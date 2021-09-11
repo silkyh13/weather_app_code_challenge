@@ -5,12 +5,23 @@ const get = async (zipCode, cb) => {
     try {
         let uvRes = await getUv(lon, lat);
         let uvi = uvRes.current.uvi;
-
         const url = `https://api.openweathermap.org/data/2.5/forecast?zip=${zipCode}&units=imperial&appid=${process.env.API_KEY}`;
         let response = await axios.get(url);
         const picked = (({ list, city }) => ({ list, city }))(response.data);
-
-        picked.uvi = uvi;
+        picked.list = picked.list.map((item) => {
+            const { main, weather, dt_txt } = item;
+            let temp = main.temp;
+            delete main.temp;
+            return {
+                dt_txt,
+                temp,
+                miscInfo: main,
+                weatherIcon: weather[0].icon,
+                weatherDescription: weather[0].description,
+            };
+        });
+        picked.city = picked.city.name;
+        picked.currUvi = uvi;
         cb(null, picked);
     } catch (error) {
         throw new Error("failed to get data", error);
