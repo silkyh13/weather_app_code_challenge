@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 import { InputGroup, Button, FormControl } from "react-bootstrap";
 import locationCoords from "../../../../assets/zip-codes-to-geo-coords.json";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setQuery } from "../../../state/slices/query";
 
 const Input = () => {
-    const [values, setValues] = useState("");
+    const dispatch = useDispatch();
+
+    const [value, setValue] = useState("");
     const [entered, setEntered] = useState(false);
     const [invalidValue, setInvalidValue] = useState(false);
 
@@ -22,28 +26,33 @@ const Input = () => {
     useEffect(() => {
         if (entered) {
             getSearchResults();
-            setValues("");
+            setValue("");
             setEntered(false);
         }
     }, [entered]);
     const handleChange = (event) => {
-        setValues(event.target.value);
+        setValue(event.target.value);
     };
 
     let getSearchResults = () => {
-        if (!locationCoords[values]) {
+        if (!locationCoords[value]) {
             setInvalidValue(true);
         } else {
-            console.log("write api req here");
-            setInvalidValue(false);
+            axios
+                .get("/weather", { params: { zipCode: value } })
+                .then((res) => {
+                    dispatch(setQuery(res.data));
+                    setInvalidValue(false);
+                })
+                .catch((err) => console.error(err));
         }
     };
     return (
-        <InputGroup className="search ml-3 mt-3 mb-3">
+        <InputGroup className="weekly-table">
             <FormControl
                 id="search-input"
                 placeholder="Enter Zipcode"
-                value={values}
+                value={value}
                 type="text"
                 onChange={handleChange}
                 isInvalid={invalidValue}

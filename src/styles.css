@@ -1,3 +1,44 @@
-.table {
-    /* width: 50%; */
+.weekly-table {
+    width: 50%;
+}
+.row-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid lightgrey;
+    padding: 10px;
+}
+.icon-and-day {
+    display: flex;
+}
+.temperature-container {
+}
+.top-font {
+    margin: 0;
+    padding: 0;
+}
+.bot-font {
+    font-size: 90%;
+    margin: 0;
+    padding: 0;
+}
+.temp-border {
+    border: 1px solid red;
+}
+.weather-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+img {
+    width: 30px;
+    height: 30px;
+    /* object-fit: cover; */
+}
+.float-right {
+    margin-left: -15px;
+}
+.grey-border {
+    border-bottom: 1px solid lightgray;
 }

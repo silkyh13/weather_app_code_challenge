@@ -6,11 +6,10 @@ import Table from "./Table";
 export default function HomePage() {
     return (
         <Container>
-            <Row>
+            <Row className="justify-content-md-center">
                 <Searchbar />
             </Row>
             <Row className="justify-content-md-center">
-                hi
                 <Table />
             </Row>
         </Container>

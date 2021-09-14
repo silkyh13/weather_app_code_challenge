@@ -14,7 +14,20 @@ const get = async (zipCode, cb) => {
             currUvi: uvi,
             geoCoords: { lat, lon },
         };
+        // console.log(picked.list);
         cb(null, picked);
+    } catch (error) {
+        throw new Error("failed to get data", error);
+    }
+};
+
+const testGet = async (zipCode, cb) => {
+    let [lat, lon] = zipCodeGeoJson[zipCode];
+    try {
+        const url = `https://api.openweathermap.org/data/2.5/forecast?zip=${zipCode}&units=imperial&appid=${process.env.API_KEY}`;
+        let response = await axios.get(url);
+
+        cb(null, response.data);
     } catch (error) {
         throw new Error("failed to get data", error);
     }
@@ -39,7 +52,7 @@ const reduceFunc = (list) => {
         curr = {
             temp,
             miscInfo: main,
-            weather: weather[0].main,
+            weatherMain: weather[0].main,
             weatherIcon: weather[0].icon,
             weatherDescription: weather[0].description,
         };
@@ -63,4 +76,5 @@ const reduceFunc = (list) => {
 };
 module.exports = {
     get,
+    testGet,
 };
