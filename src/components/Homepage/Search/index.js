@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { InputGroup, Button, FormControl } from "react-bootstrap";
+import { InputGroup, Container, FormControl } from "react-bootstrap";
 import locationCoords from "../../../../assets/zip-codes-to-geo-coords.json";
 import axios from "axios";
 import { useDispatch } from "react-redux";
@@ -48,16 +48,18 @@ const Input = () => {
         }
     };
     return (
-        <InputGroup className="weekly-table">
-            <FormControl
-                id="search-input"
-                placeholder="Enter Zipcode"
-                value={value}
-                type="text"
-                onChange={handleChange}
-                isInvalid={invalidValue}
-            />
-        </InputGroup>
+        <div className="sizing center-div">
+            <InputGroup>
+                <FormControl
+                    id="search-input"
+                    placeholder="Enter Zipcode"
+                    value={value}
+                    type="text"
+                    onChange={handleChange}
+                    isInvalid={invalidValue}
+                />
+            </InputGroup>
+        </div>
     );
 };
 

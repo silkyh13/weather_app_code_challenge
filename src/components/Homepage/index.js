@@ -5,7 +5,7 @@ import Table from "./Table";
 export default function HomePage() {
     return (
         <Container>
-            <Row className="justify-content-md-center mt-5">
+            <Row className="mt-5 center-div">
                 <Searchbar />
             </Row>
             <Row className="justify-content-md-center">

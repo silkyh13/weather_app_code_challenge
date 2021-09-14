@@ -69,8 +69,8 @@ export default function weeklyTable() {
         });
     };
     return (
-        <Container className="weekly-table">
-            <Row className="justify-content-md-center">
+        <Container className="sizing">
+            <div className="center-div">
                 <Form>
                     <Form.Group
                         className="mt-2 mb-2"
@@ -79,7 +79,7 @@ export default function weeklyTable() {
                         <Form.Label>{query.city}</Form.Label>
                     </Form.Group>
                 </Form>
-            </Row>
+            </div>
             <Row>
                 <Container>{query.week && extractingMaxMinTemp()}</Container>
             </Row>

@@ -1,6 +1,7 @@
-.weekly-table {
+.sizing {
     width: 50%;
 }
+
 .row-container {
     display: flex;
     width: 100%;
@@ -37,8 +38,7 @@
 .icon-and-day {
     display: flex;
 }
-.temperature-container {
-}
+
 .top-font {
     margin: 0;
     padding: 0;
@@ -66,4 +66,11 @@ img {
 }
 .grey-border {
     border-bottom: 1px solid lightgray;
+}
+.center-div {
+    display: flex;
+    justify-content: center;
+}
+.input-group {
+    width: 50%;
 }
