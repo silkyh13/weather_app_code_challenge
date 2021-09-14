@@ -63,6 +63,7 @@ export default function weeklyTable() {
                     date={date}
                     mainWeather={mainWeather}
                     miscInfo={miscInfo}
+                    currUvi={query.currUvi}
                 />
             );
         });
@@ -85,17 +86,3 @@ export default function weeklyTable() {
         </Container>
     );
 }
-
-// for (const [key, value] of Object.entries(
-//     day[1][0]
-// )) {
-//     earliestTime = key;
-// }
-// const high =
-//     day[1][4] !== undefined
-//         ? day[1][4]["12pm"].miscInfo.temp_max
-//         : day[1][0][earliestTime].miscInfo.temp_max;
-// const low =
-//     day[1][4] !== undefined
-//         ? day[1][4]["12pm"].miscInfo.temp_min
-//         : day[1][0][earliestTime].miscInfo.temp_min;
