@@ -62,7 +62,7 @@ export default function SingleDay({
                                 "\n"
                             );
                         }, "")}
-                        UV Index: {currUvi}
+                        {index === 0 && `UV Index: ${currUvi}`}
                     </p>
                 </div>
             </Row>
