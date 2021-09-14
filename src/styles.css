@@ -6,8 +6,33 @@
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid lightgrey;
     padding: 10px;
+    background-color: white;
+    border-bottom: 1px solid lightgray;
+    cursor: pointer;
+    border: none;
+    text-align: left;
+    outline: none;
+    transition: 0.4s;
+}
+.active,
+.row-container:hover {
+    background-color: #ccc;
+}
+.panel {
+    padding: 3px 18px 0 18px;
+    background-color: #fafafa;
+    overflow: hidden;
+    width: 100%;
+}
+.panel p {
+    white-space: pre-wrap;
+}
+.hide {
+    display: none;
+}
+.show {
+    display: show;
 }
 .icon-and-day {
     display: flex;

@@ -4,7 +4,7 @@ import { Table, Form, Container, Row, Col } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { stateOfquery, setQuery } from "../../../../state/slices/query";
 import iconReference from "../../../../../assets/weather-codes-icon-map.json";
-
+import SingleDay from "./SingleDay";
 export default function weeklyTable() {
     const dispatch = useDispatch();
 
@@ -25,18 +25,24 @@ export default function weeklyTable() {
         return Object.entries(query.week).map((day, i) => {
             const date = day[0];
             const weatherInfoForThatDay = day[1];
-            let high = 0,
-                low = 100,
+            let temperature = { high: 0, low: 100 },
                 modeMap = {},
                 maxCount = 0,
                 mainWeather = "",
                 icon = "",
+                miscInfo = "",
                 img = "";
 
             weatherInfoForThatDay.forEach((timeSlot) => {
                 for (const [time, info] of Object.entries(timeSlot)) {
-                    high = Math.max(high, info.miscInfo.temp_max);
-                    low = Math.min(low, info.miscInfo.temp_min);
+                    temperature.high = Math.max(
+                        temperature.high,
+                        info.miscInfo.temp_max
+                    );
+                    temperature.low = Math.min(
+                        temperature.low,
+                        info.miscInfo.temp_min
+                    );
                     modeMap[info.weatherMain]
                         ? modeMap[info.weatherMain]++
                         : (modeMap[info.weatherMain] = 1);
@@ -45,42 +51,19 @@ export default function weeklyTable() {
                         mainWeather = info.weatherMain;
                         icon = info.weatherIcon;
                     }
+                    miscInfo = info.miscInfo;
                 }
                 img = `/assets/${iconReference[icon]}`;
             });
-
             return (
-                <Row key={i}>
-                    <button class="row-container">
-                        <div className="icon-and-day">
-                            <div className="weather-icon mr-2">
-                                <img src={img} />
-                            </div>
-                            <div>
-                                <p className="top-font">
-                                    {i == 0
-                                        ? "Today"
-                                        : i == 1
-                                        ? "Tomorrow"
-                                        : date}
-                                </p>
-                                <p className="bot-font">{mainWeather}</p>
-                            </div>
-                        </div>
-
-                        <div className="temperature-container">
-                            <p className="top-font">
-                                {Math.round(high)} &#8457;
-                            </p>
-
-                            <p className="bot-font">
-                                {Math.round(low)} &#8457;
-                            </p>
-                        </div>
-                    </button>
-                    <div className="row-container"></div>
-                    <div className="grey-border"></div>
-                </Row>
+                <SingleDay
+                    index={i}
+                    temperature={temperature}
+                    img={img}
+                    date={date}
+                    mainWeather={mainWeather}
+                    miscInfo={miscInfo}
+                />
             );
         });
     };
