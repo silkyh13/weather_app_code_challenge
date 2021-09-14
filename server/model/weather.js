@@ -14,7 +14,6 @@ const get = async (zipCode, cb) => {
             currUvi: uvi,
             geoCoords: { lat, lon },
         };
-        // console.log(picked.list);
         cb(null, picked);
     } catch (error) {
         throw new Error("failed to get data", error);

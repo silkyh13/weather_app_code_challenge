@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const port = 3000;
-const weather = require("./server/routes/weather");
+const weather = require("./server/route/weather");
 
 app.use(
     express.json({

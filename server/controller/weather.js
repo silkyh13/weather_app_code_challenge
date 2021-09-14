@@ -1,4 +1,4 @@
-const weather = require("../models/weather");
+const weather = require("../model/weather");
 
 const get = (req, res) => {
     weather.get(req.query.zipCode, (err, response) => {
